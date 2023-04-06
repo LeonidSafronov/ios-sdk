@@ -16,6 +16,12 @@ class MockPersistenceStorage: PersistenceStorage {
     init() {
 
     }
+
+    var needUpdateInfoOnce: Bool? {
+        didSet {
+            onDidChange?()
+        }
+    }
     
     var deviceUUID: String? {
         didSet {

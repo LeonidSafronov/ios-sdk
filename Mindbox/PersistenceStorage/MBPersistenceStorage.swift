@@ -197,6 +197,13 @@ class MBPersistenceStorage: PersistenceStorage {
         }
     }
 
+    @UserDefaultsWrapper(key: .needUpdateInfoOnce, defaultValue: nil)
+    var needUpdateInfoOnce: Bool? {
+        didSet {
+            onDidChange?()
+        }
+    }
+
     func reset() {
         installationDate = nil
         deviceUUID = nil
@@ -244,6 +251,7 @@ extension MBPersistenceStorage {
             case isNotificationsEnabled = "MBPersistenceStorage-isNotificationsEnabled"
             case installationData = "MBPersistenceStorage-installationData"
             case shownInAppsIds = "MBPersistenceStorage-shownInAppsIds"
+            case needUpdateInfoOnce = "MBPersistenceStorage-needUpdateInfoOnce"
         }
         
         private let key: Key
